@@ -1,0 +1,24 @@
+{% extends "blogs/_base.html" %}
+
+{% block title %}로그인{% endblock %}
+{% block page %}login{% endblock %}
+
+{% block content %}
+<main class="mb-4">
+  <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Login -->
+              <div class="my-5">
+                  <form method="post" action="{% url 'login' %}">
+                  <input type="hidden" name="next" value="" />
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-primary" type="submit">LOGIN</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+{% endblock %}

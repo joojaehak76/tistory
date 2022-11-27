@@ -1,0 +1,23 @@
+{% extends "blogs/_base.html" %}
+
+{% block title %}회원가입{% endblock %}
+{% block page %}signup{% endblock %}
+
+{% block content %}
+<main class="mb-4">
+  <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Sign up -->
+              <div class="my-5">
+                  <form method="post" action="">
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    <button class="btn btn-primary" type="submit">SIGN UP</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "blogs/_base.html" %}
+
+{% block title %}글쓰기{% endblock %}
+
+{% block content %}
+<!-- Post Write -->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="my-5">
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    {% if errors %}
+                    {% for error in errors %}
+                    <div class="alert alert-primary" role="alert"><div class="text-center text-danger mb-3">{{ error }}</div></div>
+                    {% endfor %}
+                    {% endif %}
+                    <form method="post" action="{% url 'post_write' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-floating">
+                            <input class="form-control" id="title" name="title" type="text" placeholder="제목을 입력해주세요..." data-sb-validations="required" />
+                            <label for="title">제목</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" id="content" name="content" placeholder="내용을 입력해주세요..." style="height: 12rem" data-sb-validations="required"></textarea>
+                            <label for="content">내용</label>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">A content is required.</div>
+                        </div>
+                        <div class="form-floating">
+                            <input type="file" class="form-control" id="image" name="image">
+                            <label for="content">사진 첨부</label>
+                        </div>
+                        <br />
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary" id="submitButton" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
